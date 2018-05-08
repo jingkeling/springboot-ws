@@ -1,6 +1,5 @@
 package com.kolin.component.websocket;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.websocket.HandshakeResponse;
 import javax.websocket.server.HandshakeRequest;

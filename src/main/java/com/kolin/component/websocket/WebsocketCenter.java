@@ -1,6 +1,10 @@
 package com.kolin.component.websocket;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Maps;
 import com.kolin.config.consts.WsConst;
+import com.kolin.pojo.VO.ChatVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -10,6 +14,7 @@ import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -28,7 +33,7 @@ public class WebsocketCenter extends Object {
     private static AtomicInteger safeCount = new AtomicInteger(0);
 
     /**
-     * 用户名名，websocket的session
+     * 用户名，websocket的session
      */
     private static ConcurrentHashMap<String, Session> sessionMap = new ConcurrentHashMap<>();
 
@@ -96,14 +101,16 @@ public class WebsocketCenter extends Object {
     /**
      * 群发
      *
-     * @param username1
-     * @param message
+     * @param chatVO
+     * @throws JsonProcessingException
      */
-    public void sendMessageAll(String username1, String message) {
-        log.info("【websocket消息】发送所有人， message = {}", message);
+    public void sendMessageAll(ChatVO chatVO) throws JsonProcessingException {
+        log.info("【websocket消息】-{}-发送所有人", chatVO.getUsername() );
+        final ObjectMapper mapper = new ObjectMapper();
+        final String json = mapper.writeValueAsString(chatVO);
         sessionMap.forEach((key, value)-> {
             try {
-                value.getBasicRemote().sendText(message);
+                value.getBasicRemote().sendText(json);
             } catch (IOException e) {
                 e.printStackTrace();
             }
