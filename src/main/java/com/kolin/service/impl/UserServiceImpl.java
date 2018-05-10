@@ -21,8 +21,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDO login(String username) {
-        final UserDO byUsername = userRepository.findByUsername(username);
+        final UserDO user = userRepository.findByUsername(username);
+        // TODO: 改成optional
+        if (user == null) { return null;}
+        if (user.getIsOnline() == null || user.getIsOnline() == 0) {
+            user.setIsOnline(1);
+            return user;
+        } else {
+            return null;
+        }
 
-        return byUsername;
+    }
+
+    /**
+     * 登出
+     */
+    @Override
+    public void logout(String username) {
+        final UserDO user = userRepository.findByUsername(username);
+        user.setIsOnline(0);
+    }
+
+    @Override
+    public Boolean isOnline(String username) {
+        /*final UserDO userdo = userRepository.findByUsername(username);
+        final Integer isOnline = userdo.getIsOnline();*/
+        return true;
     }
 }

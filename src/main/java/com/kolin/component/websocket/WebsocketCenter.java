@@ -2,10 +2,12 @@ package com.kolin.component.websocket;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Maps;
 import com.kolin.config.consts.WsConst;
 import com.kolin.pojo.VO.ChatVO;
+import com.kolin.service.UserService;
+import com.kolin.utils.ApplicationContextRegister;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -14,7 +16,6 @@ import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -26,6 +27,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @ServerEndpoint(value = "/websocket/{param}", configurator = HttpSessionConfiguratior.class)
 @Slf4j
 public class WebsocketCenter extends Object {
+
 
     private String username;
 
@@ -80,6 +82,10 @@ public class WebsocketCenter extends Object {
         sessionMap.remove(username);
         System.out.println("用户　"+ username + "退出～");
         log.info("【websocket消息】-{}-连接断开，当前在线总人数:{}", username, sessionMap.size());
+        final ApplicationContext applicatioContext = ApplicationContextRegister.getApplicatioContext();
+        final UserService userService = applicatioContext.getBean(UserService.class);
+
+        userService.logout(username);
     }
 
 

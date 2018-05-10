@@ -1,6 +1,7 @@
 server:
   port: 8082
 
+
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -12,3 +13,5 @@ spring:
     initialSize: 1
     maxWait: 60000
     filter: stat,wall.log4j
+
+

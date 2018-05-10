@@ -10,4 +10,9 @@ public interface UserService {
 
 
     UserDO login(String username);
+
+
+    void logout(String username);
+
+    Boolean isOnline(String username);
 }

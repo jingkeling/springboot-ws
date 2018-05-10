@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 /**
  * @Author jingkeling
@@ -31,10 +32,13 @@ public class UserConroller {
         final HttpSession httpSession = request.getSession();
         httpSession.setAttribute(WsConst.DEFAULT_SESSION_USERNAME, username);
 
-        UserDO avator = userService.login(username);
-        if (StringUtils.isEmpty(avator)) {
-            return null;
-        }
-        return avator;
+        UserDO userDO = userService.login(username);
+        return Optional.ofNullable(userDO).orElse(null);
     }
+
+
+
+
+
+
 }
