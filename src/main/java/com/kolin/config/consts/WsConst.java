@@ -11,6 +11,13 @@ public interface WsConst {
      */
      String DEFAULT_SESSION_USERNAME = "session_name";
 
+    /**
+     * HttpSession中储存的头像 key
+     */
+    String DEFAULT_SESSION_AVATOR = "session_avator";
+
+
+
 
 
 }

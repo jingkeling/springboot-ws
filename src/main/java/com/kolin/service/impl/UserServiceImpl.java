@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Random;
+
 /**
  * @Author jingkeling
  * @Date 2018/5/8 20:51
@@ -53,5 +55,24 @@ public class UserServiceImpl implements UserService {
     public UserDO save(UserDO userDO) {
         UserDO save = userRepository.save(userDO);
         return save;
+    }
+
+    @Override
+    public UserDO loginAndRegister(String username) {
+        UserDO userDO = userRepository.findByUsername(username);
+        if (userDO == null) {
+            Random random = new Random();
+            userDO = new UserDO();
+            userDO.setUsername(username);
+            userDO.setId(random.nextInt());
+            userDO.setAvator("http://i1.bvimg.com/626277/89998b3d06f0bbb4.jpg");
+            userRepository.save(userDO);
+            return userDO;
+        } else if (userDO.getIsOnline() == 1) {
+            return null;
+        } else {
+            return userDO;
+        }
+
     }
 }

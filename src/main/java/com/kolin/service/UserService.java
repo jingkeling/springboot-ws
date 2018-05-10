@@ -17,4 +17,14 @@ public interface UserService {
     Boolean isOnline(String username);
 
     UserDO save(UserDO userDO);
+
+
+    /**
+     * 1、登录，
+     * 2、如果没有帐号就注册
+     * 3、如果已经登录了，就不允许登录
+     * @param username
+     * @return
+     */
+    UserDO loginAndRegister(String username);
 }
