@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Optional;
+import java.util.Random;
 
 /**
  * @Author jingkeling
@@ -23,8 +23,6 @@ public class UserConroller {
     private UserService userService;
 
 
-
-
     @PostMapping("login")
     public UserDO login(HttpServletRequest request, @RequestParam(value = "username") String username,
                         @RequestParam(value = "password", required = false) String password) {
@@ -32,13 +30,16 @@ public class UserConroller {
         final HttpSession httpSession = request.getSession();
         httpSession.setAttribute(WsConst.DEFAULT_SESSION_USERNAME, username);
 
-        UserDO userDO = userService.login(username);
-        return Optional.ofNullable(userDO).orElse(null);
+        UserDO avator = userService.login(username);
+        if (StringUtils.isEmpty(avator)) {
+            Random random = new Random();
+            UserDO userDO = new UserDO();
+            userDO.setUsername(username);
+            userDO.setId(random.nextInt());
+            userDO.setAvator("http://i1.bvimg.com/626277/89998b3d06f0bbb4.jpg");
+            UserDO userDO1 = userService.save(userDO);
+            return userDO1;
+        }
+        return avator;
     }
-
-
-
-
-
-
 }

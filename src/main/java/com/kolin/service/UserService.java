@@ -15,4 +15,6 @@ public interface UserService {
     void logout(String username);
 
     Boolean isOnline(String username);
+
+    UserDO save(UserDO userDO);
 }

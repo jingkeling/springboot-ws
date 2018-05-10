@@ -48,4 +48,10 @@ public class UserServiceImpl implements UserService {
         final Integer isOnline = userdo.getIsOnline();*/
         return true;
     }
+
+    @Override
+    public UserDO save(UserDO userDO) {
+        UserDO save = userRepository.save(userDO);
+        return save;
+    }
 }
