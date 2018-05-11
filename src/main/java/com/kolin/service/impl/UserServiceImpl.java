@@ -66,11 +66,13 @@ public class UserServiceImpl implements UserService {
             userDO.setUsername(username);
             userDO.setId(random.nextInt());
             userDO.setAvator("http://i1.bvimg.com/626277/89998b3d06f0bbb4.jpg");
+            userDO.setIsOnline(1);
             userRepository.save(userDO);
             return userDO;
         } else if (userDO.getIsOnline() == 1) {
             return null;
         } else {
+            userDO.setIsOnline(1);
             return userDO;
         }
 
