@@ -35,10 +35,10 @@ public class UserConroller {
     public UserDO login(HttpServletRequest request, @RequestParam(value = "username") String username,
                         @RequestParam(value = "password", required = false) String password) {
         System.out.println(username + " logining");
-        final HttpSession httpSession = request.getSession();
-        httpSession.setAttribute(WsConst.DEFAULT_SESSION_USERNAME, username);
         UserDO userDO = userService.loginAndRegister(username);
         if (userDO != null) {
+            final HttpSession httpSession = request.getSession();
+            httpSession.setAttribute(WsConst.DEFAULT_SESSION_USERNAME, username);
             httpSession.setAttribute(WsConst.DEFAULT_SESSION_AVATOR, userDO.getAvator());
             return userDO;
         }
