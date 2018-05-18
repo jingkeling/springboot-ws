@@ -85,7 +85,7 @@ public class WebsocketCenter extends Object {
         final ApplicationContext applicatioContext = ApplicationContextRegister.getApplicatioContext();
         final UserService userService = applicatioContext.getBean(UserService.class);
 
-        userService.logout(username);
+//        userService.logout(username);
     }
 
 

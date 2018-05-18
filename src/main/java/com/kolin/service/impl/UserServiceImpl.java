@@ -69,11 +69,11 @@ public class UserServiceImpl implements UserService {
             userDO.setIsOnline(1);
             userRepository.save(userDO);
             return userDO;
-        } else if (userDO.getIsOnline() == 1) {
-            return null;
-        } else {
+        } else if (userDO.getIsOnline() == null || userDO.getIsOnline() == 0) {
             userDO.setIsOnline(1);
             return userDO;
+        } else {
+            return null;
         }
 
     }
