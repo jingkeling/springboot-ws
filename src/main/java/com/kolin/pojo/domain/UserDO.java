@@ -33,5 +33,8 @@ public class UserDO {
 
     @Column(name = "isonline")
     private Integer isOnline;
+
+    @Column(name = "islogin")
+    private Integer isLogin;
 }
 

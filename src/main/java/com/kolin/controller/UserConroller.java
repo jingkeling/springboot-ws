@@ -4,13 +4,11 @@ import com.kolin.config.consts.WsConst;
 import com.kolin.pojo.domain.UserDO;
 import com.kolin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @Author jingkeling
@@ -33,15 +31,21 @@ public class UserConroller {
      */
     @PostMapping("login")
     public UserDO login(HttpServletRequest request, @RequestParam(value = "username") String username,
-                        @RequestParam(value = "password", required = false) String password) {
+                        @RequestParam(value = "password") String password) {
         System.out.println(username + " logining");
-        UserDO userDO = userService.loginAndRegister(username);
-        if (userDO != null) {
-            final HttpSession httpSession = request.getSession();
-            httpSession.setAttribute(WsConst.DEFAULT_SESSION_USERNAME, username);
-            httpSession.setAttribute(WsConst.DEFAULT_SESSION_AVATOR, userDO.getAvator());
-            return userDO;
-        }
-        return null;
+        UserDO userDO = userService.loginAndRegister(username, password);
+        if (userDO == null) { return null;}
+
+        final HttpSession httpSession = request.getSession();
+        httpSession.setAttribute(WsConst.DEFAULT_SESSION_USERNAME, username);
+        httpSession.setAttribute(WsConst.DEFAULT_SESSION_AVATOR, userDO.getAvator());
+        return userDO;
+
+    }
+
+    @GetMapping("findAll")
+    public List<UserDO> findAll() {
+        List<UserDO> list = userService.findAll();
+        return list;
     }
 }

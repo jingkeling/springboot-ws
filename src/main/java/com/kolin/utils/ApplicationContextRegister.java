@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
+ * spring上下文工具类
  * @Author jingkeling
  * @Date 2018/5/9 21:06
  */

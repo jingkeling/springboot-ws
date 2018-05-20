@@ -2,6 +2,8 @@ package com.kolin.service;
 
 import com.kolin.pojo.domain.UserDO;
 
+import java.util.List;
+
 /**
  * @Author jingkeling
  * @Date 2018/5/8 20:51
@@ -18,6 +20,8 @@ public interface UserService {
 
     UserDO save(UserDO userDO);
 
+    void changeOnline(String username, Integer online);
+
 
     /**
      * 1、登录，
@@ -26,5 +30,7 @@ public interface UserService {
      * @param username
      * @return
      */
-    UserDO loginAndRegister(String username);
+    UserDO loginAndRegister(String username, String password);
+
+    List<UserDO> findAll();
 }

@@ -34,7 +34,6 @@ public class CorsFilter implements Filter {
     public void destroy() {}
 
     /**
-     * TODO: 跨域待测试
      * @Description 服务器通过返回响应头进行权限控制
      * @Date 2018/2/27 16:30
      * @param servletRequest

@@ -64,6 +64,12 @@ public class WebsocketCenter extends Object {
         username = (String) httpSession.getAttribute(WsConst.DEFAULT_SESSION_USERNAME);
         sessionMap.put(username, session);
         log.info("【websocket消息】-{}-登录， 当前在线总人数是：{}",username, sessionMap.size());
+
+        //连接后设置isonline
+        final ApplicationContext applicatioContext = ApplicationContextRegister.getApplicatioContext();
+        final UserService userService = applicatioContext.getBean(UserService.class);
+        userService.changeOnline(username, 1);
+
     }
 
     /**
@@ -82,10 +88,11 @@ public class WebsocketCenter extends Object {
         sessionMap.remove(username);
         System.out.println("用户　"+ username + "退出～");
         log.info("【websocket消息】-{}-连接断开，当前在线总人数:{}", username, sessionMap.size());
+
+        //断开是登出
         final ApplicationContext applicatioContext = ApplicationContextRegister.getApplicatioContext();
         final UserService userService = applicatioContext.getBean(UserService.class);
-
-//        userService.logout(username);
+        userService.changeOnline(username, 0);
     }
 
 
