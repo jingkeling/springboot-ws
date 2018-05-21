@@ -48,4 +48,9 @@ public class UserConroller {
         List<UserDO> list = userService.findAll();
         return list;
     }
+
+    @GetMapping("signout/{username}")
+    public void signout(@PathVariable(name = "username") String username) {
+        userService.signout(username);
+    }
 }

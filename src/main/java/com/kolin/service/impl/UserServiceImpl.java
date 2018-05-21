@@ -96,4 +96,13 @@ public class UserServiceImpl implements UserService {
         final List<UserDO> all = userRepository.findAll(new Sort(Sort.Direction.DESC));
         return all;
     }
+
+    @Override
+    public void signout(String username) {
+        final UserDO userDO = userRepository.findByUsername(username);
+        if (userDO != null) {
+            userDO.setIsLogin(0);
+        }
+
+    }
 }

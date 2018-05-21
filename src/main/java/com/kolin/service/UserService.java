@@ -33,4 +33,10 @@ public interface UserService {
     UserDO loginAndRegister(String username, String password);
 
     List<UserDO> findAll();
+
+
+    /**
+     * 登出
+     */
+    void signout(String username);
 }
