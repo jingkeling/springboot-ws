@@ -1,3 +1,4 @@
 # springboot-ws
 vue-chat的服务端
-11
+
+主要是websocket
