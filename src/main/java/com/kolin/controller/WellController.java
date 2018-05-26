@@ -11,7 +11,7 @@ public class WellController {
 
 
 
-    @RequestMapping("index1")
+    @RequestMapping("index")
     public String get(HttpServletResponse response) {
 
         return "index";
