@@ -8,12 +8,8 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://db4free.net:3306/keling?characterEncoding=utf8
-    username: keling
+    url: jdbc:mysql://localhost:3306/wsserver?characterEncoding=utf8
+    username: root
     password: zxc123zxc
-    tomcat:
-      max-active: 20
-      initial-size: 1
-      max-wait: 60000
 
 

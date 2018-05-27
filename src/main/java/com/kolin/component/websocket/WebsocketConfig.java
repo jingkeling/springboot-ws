@@ -12,6 +12,14 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 @Configuration
 public class WebsocketConfig {
 
+    /*
+     * 注意！！ 这是针对springboot内置tomcat的，
+     *
+     * 部署war时，外部的tomcat不需要这个
+     *
+     * 不然会报异常 WebSocket issue : Multiple Endpoints may not be deployed to the same path
+     *
+     */
 
     @Bean
     public ServerEndpointExporter serverEndpointExporter(){

@@ -33,7 +33,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+        <!--springboot内置tomcat，设置provided只在编译和测试时使用-->
+    <!--    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -82,6 +87,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>chathub</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
