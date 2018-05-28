@@ -9,7 +9,7 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
  * @Author jingkeling
  * @Date 2018/5/7 22:07
  */
-@Configuration
+//@Configuration
 public class WebsocketConfig {
 
     /*
@@ -20,9 +20,9 @@ public class WebsocketConfig {
      * 不然会报异常 WebSocket issue : Multiple Endpoints may not be deployed to the same path
      *
      */
-
+/*
     @Bean
     public ServerEndpointExporter serverEndpointExporter(){
         return new ServerEndpointExporter();
-    }
+    }*/
 }

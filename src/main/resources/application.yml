@@ -1,7 +1,9 @@
-#server:
-#  port: 8080
-#  servlet:
-#    context-path: /wsserver
+server:
+  port: 8080
+  servlet:
+    context-path: /chathub
+
+
 
 
 spring:
@@ -11,5 +13,17 @@ spring:
     url: jdbc:mysql://localhost:3306/wsserver?characterEncoding=utf8
     username: root
     password: zxc123zxc
+  output:
+    ansi:
+      enabled: detect
+
+
+logging:
+  file: ./logs/core.log
+  level:
+    ROOT: info
+
+
+
 
 
