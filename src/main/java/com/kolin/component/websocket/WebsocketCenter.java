@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 @ServerEndpoint(value = "/websocket/{param}", configurator = HttpSessionConfiguratior.class)
 @Slf4j
-public class WebsocketCenter extends Object {
+public class WebsocketCenter{
 
 
     private String username;

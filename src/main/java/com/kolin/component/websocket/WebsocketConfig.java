@@ -9,10 +9,10 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
  * @Author jingkeling
  * @Date 2018/5/7 22:07
  */
-@Configuration
+//@Configuration
 public class WebsocketConfig {
 
-    /*
+    /**
      * 注意！！ 这是针对springboot内置tomcat的，
      *
      * 部署war时，外部的tomcat不需要这个
